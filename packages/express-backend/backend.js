@@ -61,7 +61,7 @@ const removeUser = (user) => {
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello Bobs!");
+  res.send("Hello World!");
 });
 
 
