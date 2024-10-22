@@ -7,14 +7,14 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function removeOneCharacter(id){
-        const promise = fetch(`http://localhost:8000/users/${id}`, {
+        const promise = fetch(`http://localhost:8000/users/${_id}`, {
                 method: "DELETE",
         });
 
         promise
         .then((res) => {
                 if (res.status == 204){
-                        const updated = characters.filter((character) => character.id != id);
+                        const updated = characters.filter((character) => character._id != _id);
                 setCharacters(updated);
                 } else if (res.status == 404) {
                         console.error("User not found.");
@@ -24,13 +24,6 @@ function MyApp() {
                 console.error("Failed to delete user:", error);
                 });
         } 
-
-  /*function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
-    setCharacters(updated);
-  }*/
 
   function updateList(person) {
         postUser(person)
@@ -64,7 +57,7 @@ function MyApp() {
       useEffect(() => {
         fetchUsers()
           .then((res) => res.json())
-          .then((json) => setCharacters(json["users_list"]))
+          .then((json) => setCharacters(json))
           .catch((error) => {
             console.log(error);
           });
